@@ -1,0 +1,227 @@
+// The exported code uses Tailwind CSS. Install Tailwind CSS in your dev environment to ensure all styles work.
+import React, { useState } from 'react';
+const HomePage: React.FC = () => {
+return (
+<div className="pt-16 pb-20 px-4">
+{/* Welcome Banner */}
+<div className="mb-6 rounded-lg overflow-hidden">
+<img
+src="https://public.readdy.ai/ai/img_res/c56554a71eb54a5fef45aab2ced58088.jpg"
+alt="Banner sportif"
+className="w-full h-40 object-cover"
+/>
+</div>
+{/* Quick Stats */}
+<div className="grid grid-cols-2 gap-4 mb-6">
+<div className="bg-white p-4 rounded-lg shadow-sm">
+<p className="text-sm text-gray-600">Matchs Prédits</p>
+<p className="text-2xl font-bold text-blue-600">1,234</p>
+</div>
+<div className="bg-white p-4 rounded-lg shadow-sm">
+<p className="text-sm text-gray-600">Précision</p>
+<p className="text-2xl font-bold text-green-600">78%</p>
+</div>
+</div>
+{/* Categories Grid */}
+<div className="mb-8">
+<h2 className="text-lg font-semibold mb-4">Catégories Populaires</h2>
+<div className="grid grid-cols-4 gap-4">
+{[
+{ icon: 'futbol', label: 'Football' },
+{ icon: 'basketball-ball', label: 'Basket' },
+{ icon: 'baseball-ball', label: 'Baseball' },
+{ icon: 'volleyball-ball', label: 'Volley' }
+].map((item, index) => (
+<div key={index} className="text-center cursor-pointer">
+<div className="bg-white w-16 h-16 rounded-full mx-auto mb-2 flex items-center justify-center shadow-sm">
+<i className={`fas fa-${item.icon} text-blue-600 text-xl`}></i>
+</div>
+<p className="text-xs text-gray-600">{item.label}</p>
+</div>
+))}
+</div>
+</div>
+{/* Recent Matches */}
+<div className="mb-6">
+<h2 className="text-lg font-semibold mb-4">Matchs Récents</h2>
+<div className="space-y-4">
+{[
+{ team1: 'PSG', score1: 2, team2: 'Marseille', score2: 1 },
+{ team1: 'Lyon', score1: 3, team2: 'Monaco', score2: 3 },
+{ team1: 'Lille', score1: 1, team2: 'Nice', score2: 0 }
+].map((match, index) => (
+<div key={index} className="bg-white p-4 rounded-lg shadow-sm">
+<div className="flex justify-between items-center">
+<span className="text-sm font-medium">{match.team1}</span>
+<span className="text-lg font-bold text-blue-600">
+{match.score1} - {match.score2}
+</span>
+<span className="text-sm font-medium">{match.team2}</span>
+</div>
+</div>
+))}
+</div>
+</div>
+</div>
+);
+};
+const HistoryPage: React.FC = () => {
+return (
+<div className="pt-16 pb-20 px-4">
+<h2 className="text-lg font-semibold mb-4">Historique des Paris</h2>
+<div className="space-y-4">
+{[
+{ date: '20 Mars 2025', match: 'PSG vs Real Madrid', bet: '2-1', result: 'Gagné', amount: '+150€' },
+{ date: '19 Mars 2025', match: 'Bayern vs Barcelona', bet: '3-0', result: 'Perdu', amount: '-50€' },
+{ date: '18 Mars 2025', match: 'Liverpool vs City', bet: '1-1', result: 'Gagné', amount: '+80€' }
+].map((bet, index) => (
+<div key={index} className="bg-white p-4 rounded-lg shadow-sm">
+<div className="flex justify-between items-center mb-2">
+<span className="text-sm text-gray-600">{bet.date}</span>
+<span className={`text-sm font-medium ${bet.result === 'Gagné' ? 'text-green-600' : 'text-red-600'}`}>
+{bet.result}
+</span>
+</div>
+<p className="text-base font-medium mb-2">{bet.match}</p>
+<div className="flex justify-between items-center">
+<span className="text-sm text-gray-600">Pari: {bet.bet}</span>
+<span className={`font-bold ${bet.amount.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+{bet.amount}
+</span>
+</div>
+</div>
+))}
+</div>
+</div>
+);
+};
+const ProfilePage: React.FC = () => {
+return (
+<div className="pt-16 pb-20 px-4">
+<div className="flex flex-col items-center mb-6">
+<div className="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+<i className="fas fa-user text-4xl text-blue-600"></i>
+</div>
+<h2 className="text-xl font-semibold">Thomas Martin</h2>
+<p className="text-gray-600">Membre depuis Mars 2025</p>
+</div>
+<div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+<h3 className="text-lg font-semibold mb-3">Statistiques</h3>
+<div className="grid grid-cols-2 gap-4">
+<div className="text-center">
+<p className="text-2xl font-bold text-blue-600">127</p>
+<p className="text-sm text-gray-600">Paris Totaux</p>
+</div>
+<div className="text-center">
+<p className="text-2xl font-bold text-green-600">68%</p>
+<p className="text-sm text-gray-600">Taux de Réussite</p>
+</div>
+</div>
+</div>
+<div className="bg-white rounded-lg shadow-sm p-4">
+<h3 className="text-lg font-semibold mb-3">Paramètres</h3>
+<div className="space-y-4">
+<button className="w-full flex justify-between items-center py-2 text-left">
+<span className="text-gray-700">Notifications</span>
+<i className="fas fa-chevron-right text-gray-400"></i>
+</button>
+<button className="w-full flex justify-between items-center py-2 text-left">
+<span className="text-gray-700">Mode sombre</span>
+<i className="fas fa-chevron-right text-gray-400"></i>
+</button>
+<button className="w-full flex justify-between items-center py-2 text-left">
+<span className="text-gray-700">Langue</span>
+<i className="fas fa-chevron-right text-gray-400"></i>
+</button>
+<button className="w-full flex justify-between items-center py-2 text-left">
+<span className="text-red-600">Déconnexion</span>
+<i className="fas fa-sign-out-alt text-red-600"></i>
+</button>
+</div>
+</div>
+</div>
+);
+};
+const App: React.FC = () => {
+const [activeTab, setActiveTab] = useState('home');
+const [loading, setLoading] = useState(false);
+const [navTitle, setNavTitle] = useState('Accueil');
+const handleTabChange = (tab: string) => {
+setLoading(true);
+setActiveTab(tab);
+// Update nav title based on active tab
+switch(tab) {
+  case 'home':
+    setNavTitle('Accueil');
+    break;
+  case 'history':
+    setNavTitle('Historique');
+    break;
+  case 'profile':
+    setNavTitle('Profil');
+    break;
+  default:
+    setNavTitle('Accueil');
+}
+// Simulate loading time
+setTimeout(() => {
+setLoading(false);
+}, 800);
+};
+const renderContent = () => {
+if (loading) {
+return (
+<div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-90 z-50">
+<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+</div>
+);
+}
+switch (activeTab) {
+case 'home':
+return <HomePage />;
+case 'history':
+return <HistoryPage />;
+case 'profile':
+return <ProfilePage />;
+default:
+return <HomePage />;
+}
+};
+return (
+<div className="relative min-h-screen bg-light-bg font-['Poppins']">
+{/* Nav Bar */}
+<div className="fixed top-0 w-full bg-blue-600 text-white px-4 py-3 z-50 shadow-md">
+<h1 className="text-xl font-semibold text-center">{navTitle}</h1>
+</div>
+{/* Main Content */}
+{renderContent()}
+{/* Tab Bar */}
+<div className="fixed bottom-0 w-full bg-white border-t border-gray-200 shadow-lg">
+<div className="grid grid-cols-3 gap-4 px-4 py-3">
+<div
+className="text-center cursor-pointer"
+onClick={() => handleTabChange('home')}
+>
+<i className={`fas fa-home text-xl ${activeTab === 'home' ? 'text-blue-600' : 'text-gray-400'}`}></i>
+<p className={`text-xs mt-1 ${activeTab === 'home' ? 'text-blue-600' : 'text-gray-400'}`}>Accueil</p>
+</div>
+<div
+className="text-center cursor-pointer"
+onClick={() => handleTabChange('history')}
+>
+<i className={`fas fa-history text-xl ${activeTab === 'history' ? 'text-blue-600' : 'text-gray-400'}`}></i>
+<p className={`text-xs mt-1 ${activeTab === 'history' ? 'text-blue-600' : 'text-gray-400'}`}>Historique</p>
+</div>
+<div
+className="text-center cursor-pointer"
+onClick={() => handleTabChange('profile')}
+>
+<i className={`fas fa-user text-xl ${activeTab === 'profile' ? 'text-blue-600' : 'text-gray-400'}`}></i>
+<p className={`text-xs mt-1 ${activeTab === 'profile' ? 'text-blue-600' : 'text-gray-400'}`}>Profil</p>
+</div>
+</div>
+</div>
+</div>
+);
+};
+export default App
